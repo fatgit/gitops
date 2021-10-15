@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apps-prometheus-integration
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: apps
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: prometheus-community/prometheus
+    targetRevision: '14.11.0' # chart version, not Prometheus version
+    helm:
+      values: |
+        alertmanager:
+          enabled: false
+        alertmanagerFiles:
+          alertmanager.yml: ""
+        nodeExporter:
+          enabled: false
+        pushgateway:
+          enabled: false
+          serverFiles:
+
+
+  destination:
+    name: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
