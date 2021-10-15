@@ -9,7 +9,7 @@ spec:
   project: apps
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
-    chart: prometheus-community/prometheus
+    chart: prometheus
     targetRevision: '14.11.0' # chart version, not Prometheus version
     helm:
       values: |
@@ -22,10 +22,8 @@ spec:
         pushgateway:
           enabled: false
           serverFiles:
-
-
   destination:
     name: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: default
   syncPolicy:
     automated: {}
