@@ -23,7 +23,6 @@ spec:
           enabled: false
           serverFiles:
   destination:
-    name: https://kubernetes.default.svc
     namespace: default
   syncPolicy:
     automated: {}
