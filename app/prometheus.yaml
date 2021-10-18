@@ -18,7 +18,7 @@ spec:
         alertmanagerFiles:
           alertmanager.yml: ""
         nodeExporter:
-          enabled: false
+          enabled: true
         pushgateway:
           enabled: false
           serverFiles:
