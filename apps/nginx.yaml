@@ -1,25 +1,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: apps-nginx-prd
+  name: apps-nginx
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-generators:
-- list:
-    elements:
-    - env: stg
-    - env: prd
-spec:
-  project: config
-  source:
-    repoURL: https://github.com/fatgit/gitops
-    targetRevision: HEAD
-    path: service/{{env}}
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: default
-  syncPolicy:
-    automated:
-      prune: true
+  generators:
+  - list:
+      elements:
+      - env: stg
+      - env: prd
+  template:
+    metadata:
+      name: '{{env}}-guestbook'
+    spec:
+      project: config
+      source:
+        repoURL: https://github.com/fatgit/gitops
+        targetRevision: HEAD
+        path: service/{{env}}
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+        syncPolicy:
+      automated:
+        prune: true
