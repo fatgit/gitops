@@ -12,6 +12,6 @@ spec:
     targetRevision: HEAD
     path: service/stg
   destination:
-    namespace: default
+    namespace: argocd
   syncPolicy:
     automated: {}
