@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps-nginx  
+spec:
+  generators:
+  - list:
+      elements:
+      - env: stg
+      - env: prd
+  template:
+    metadata:
+      name: '{{env}}-guestbook'
+    spec:
+      project: config
+      source:
+        repoURL: https://github.com/fatgit/gitops
+        targetRevision: HEAD
+        path: service/{{env}}
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+        syncPolicy:
+      automated:
+        prune: true
