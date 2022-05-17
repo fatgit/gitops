@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/fatgit/gitops
     targetRevision: HEAD
-    path: app
+    path: service/stg
   destination:
     namespace: default
   syncPolicy:
