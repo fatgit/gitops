@@ -12,7 +12,7 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: nginx
+    app: nginx-stg
   type: NodePort
 status:
   loadBalancer: {}
