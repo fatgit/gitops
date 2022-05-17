@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   labels:
     app: nginx-prd
-  name: nginx
+  name: nginx-prd
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: nginx-prd
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx-prd
     spec:
       containers:
       - image: nginx
-        name: nginx
+        name: nginx-prd
         resources:
           requests:
             memory: "64Mi"
